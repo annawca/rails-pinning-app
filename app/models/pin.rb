@@ -1,4 +1,5 @@
 class Pin < ActiveRecord::Base
-  validates_presence_of :title, :url, :slug, :text, :resource_type
+  belongs_to :category
+  validates_presence_of :title, :url, :slug, :text, :category
   validates_uniqueness_of :slug
 end
