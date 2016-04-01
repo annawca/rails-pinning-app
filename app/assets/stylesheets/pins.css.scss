@@ -1,6 +1,9 @@
 a {
   color: #dd5566;
 }
+body {
+ background: url(asset-path('laptop-background.jpg')) no-repeat fixed center; 
+}
 h1 {
   font-family: 'Lobster', cursive;
   font-size: 60px;
@@ -11,14 +14,21 @@ h1 {
 }
 .pin {
   padding: 40px;
-  min-height: 343px;
+  min-height: 250px;
   background-color: #fff;
-  border: 1px solid #efefef;
+  box-shadow: 5px 5px 5px #ebebeb;
+  border: 1px solid #ebebeb;
+  border-radius: 1em;
 }
 .show-pin{
   background-color: #fff;
   padding: 40px;  
+  border-radius: 1em;  
+  box-shadow: 5px 5px 5px #ebebeb;
 }
 hr{
   clear:both;
+}
+logo-thumbnail {
+  padding: 5px;
 }
