@@ -19,7 +19,14 @@ class PinsController < ApplicationController
 
   def create
     @pin = Pin.create(pin_params)
-    redirect_to root_path
+
+    if @pin.valid?
+      @pin.save
+      redirect_to pin_path(@pin)
+    else 
+      @errors = @pin.errors
+      render :new
+    end
   end
 
   private
