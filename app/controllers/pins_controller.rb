@@ -15,6 +15,16 @@ class PinsController < ApplicationController
 
   def new
     @pin = Pin.new
+  end 
+
+  def create
+    @pin = Pin.create(pin_params)
+    redirect_to root_path
   end
 
+  private
+
+    def pin_params
+      params.require(:pin).permit(:title, :url, :slug, :text, :category_id)
+    end 
 end
