@@ -32,3 +32,19 @@ hr{
 logo-thumbnail {
   padding: 5px;
 }
+
+input[type=submit] {
+  width:25%;
+  height: 60px;
+  background: #dd5566;
+  box-shadow: none;
+  border: 0;
+  color: #fff;
+  font-size: 1.5em;
+  margin: 50px 0px 10px 0px;
+}
+
+label {
+  margin-top: 20px;
+  font-size: 1.3em;
+}
