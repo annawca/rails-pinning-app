@@ -17,7 +17,7 @@ class CreateCategories < ActiveRecord::Migration
     pins = Pin.where("category_id is null")
     
     pins.each do |pin|
-      category = Category.find_by_name(category.name)
+      category = Category.find_by_name(pin.category.name)
       if category.present?
         pin.category_id = category.id
       else
