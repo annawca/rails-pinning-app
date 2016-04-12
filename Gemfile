@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 ruby '2.1.6'
+
+gem 'aws-sdk', '< 2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
@@ -20,6 +22,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+
+gem 'paperclip'
 # Set of standard practices to log to stdout and deliver assets in the same way in production and development
 gem 'rails_12factor'
 # bundle exec rake doc:rails generates the API under doc/api.

@@ -107,6 +107,50 @@ describe "GET edit" do
 
 	end
 
+describe "POST update" do
+	before(:each) do
+		@pin = Pin.create(title: "Rails Wizard", 
+        url: "http://railswizard.org", 
+        slug: "rails-wizard", 
+        text: "A fun and helpful Rails Resource",
+        category_id: 1)
+	end
+    
+    after(:each) do
+    	pin = Pin.find_by_slug("rails-wizard")
+      if !pin.nil?
+        pin.destroy
+      end
+    end
+
+    context "valid attributes" do
+    	it 'responds with success' do
+			put "/pins", id: @pin_update.id, pin: @pin_update.attributes
+      		expect(response.success?).to be(true)
+		end
+
+		it 'updated a pin' do
+	  		put :update, id: @pin_update, pin: @pin_update.title = "Rails"
+	  		@pin_update.reload  
+      		expect(@pin_update.text).to eq("Rails")
+		end
+
+		it 'redirects to the show view' do
+			put :update, id: @pin_update, pin: @pin_update
+      		expect(response).to redirect_to(pin_url(assigns(:pin)))
+		end
+    end
+
+    context	"invalid attributes" do
+    	it 'assigns an @errors instance variable' do
+    	end
+
+    	it 'renders the edit view' do
+
+    	end
+    end
+
+end
 
 end
 
