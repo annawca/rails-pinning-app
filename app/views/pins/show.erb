@@ -19,9 +19,15 @@
       <%= "#{@pin.url}" %>
     </a>
   </p>
+  <pO>
+  <%= link_to 'Edit', edit_pin_path("#{@pin.id}"), method: :get, class: 'nav' %> 
+  </p>
 </div>
+
 <br/>
-<a href="/">
+<div class="bottom-nav">
+<a href="/" class="nav">
   <i class="fa fa-backward"></i>
   Back to Home
 </a>
+</div>

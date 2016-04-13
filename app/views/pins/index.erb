@@ -23,9 +23,9 @@
               </div>
 
               <div class="pin-title col-xs-8">
-               <h4>
+               <h3>
                 <%= link_to "#{pin.title}", pin_by_name_path(slug: pin.slug) %>
-              </h4>
+              </h3>
                <%= link_to "#{pin.url.truncate(30)}", "#{pin.url}", html_options = {target: "_blank"} %>
                </div>
           </div>
