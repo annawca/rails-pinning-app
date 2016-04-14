@@ -33,10 +33,20 @@ class PinsController < ApplicationController
     @pin = Pin.find(params[:id])
   end
 
+  def edit_by_name
+    @pin = Pin.find_by_slug(params[:slug])
+    render :edit
+  end
+
   def update
-    @pin = Pin.find(params[:id])
+    if Pin.find_by_slug(params[:slug]).nil?
+      @pin = Pin.find(params[:id])
+    else
+      @pin = Pin.find_by_slug(params[:slug])
+    end
+   
     if @pin.update(pin_params)
-      redirect_to pin_path(@pin)
+      redirect_to pin_by_name_path(@pin.slug)
     else
       @errors = @pin.errors
       render :edit

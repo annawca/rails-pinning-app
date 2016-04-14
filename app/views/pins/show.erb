@@ -10,7 +10,7 @@
     <img src="<%= @pin.image.url(:medium) %>">
   <% end %>
 
-  <p><%= "#{@pin.text}" %></p>
+  <p class="text"><%= "#{@pin.text}" %></p>
 
   <hr/>
   <p>
@@ -20,7 +20,7 @@
     </a>
   </p>
   <pO>
-  <%= link_to 'Edit', edit_pin_path("#{@pin.id}"), method: :get, class: 'nav' %> 
+  <%= link_to 'Edit', edit_pin_by_name_path("#{@pin.slug}"), method: :get, class: 'nav' %> 
   </p>
 </div>
 
