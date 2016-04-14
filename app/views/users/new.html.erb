@@ -1,5 +1,8 @@
-<h1>New User</h1>
+<h1>Sign Up</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', users_path %>
+<div class="bottom-nav">
+Already a User?<br />
+<%= link_to 'Login', login_path, class: 'nav', style: 'margin-top: 5px;'%>
+</div>

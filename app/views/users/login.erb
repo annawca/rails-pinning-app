@@ -1,0 +1,26 @@
+<h1>Login</h1>
+
+<% if !@errors.nil? %>
+  <div class="alert alert-info" style="margin-top: 20px;">
+       <%= @errors %>
+  </div>
+<% end %>
+
+<div class="form-group">
+<%= form_tag "/login" %>
+
+<%= label_tag 'Email', 'Username' %>
+<%= text_field_tag 'email', nil, class: 'form-control' %>
+
+<%= label_tag 'Password' %>
+<%= password_field_tag 'password', nil, class: 'form-control' %>
+
+
+<%= submit_tag 'Login' %>
+</div>
+
+<div class="bottom-nav">
+Don't have an account?<br />
+<%= link_to 'Sign Up', signup_path, class: 'nav', style: 'margin-top:5px;' %>
+</div>
+

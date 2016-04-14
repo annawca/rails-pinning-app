@@ -17,8 +17,23 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  # GET /users/login
+  def login
+  end
+
   # GET /users/1/edit
   def edit
+  end
+
+  # POST /login
+  def authenticate 
+    if User.authenticate(params[:email], params[:password]).nil?
+      @errors = "Your email and password combination does not exist. Please try again."
+      render :login
+    else
+      @user = User.find_by_email(params[:email])
+      render :show
+    end
   end
 
   # POST /users

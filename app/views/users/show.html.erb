@@ -1,5 +1,8 @@
+<h1>User Profile</h1>
+
 <p id="notice"><%= notice %></p>
 
+<div class="show-user">
 <p>
   <strong>First name:</strong>
   <%= @user.first_name %>
@@ -20,5 +23,8 @@
   <%= @user.password %>
 </p>
 
+
 <%= link_to 'Edit', edit_user_path(@user), class: 'nav' %> 
-<%= link_to 'Back', users_path, class:'nav' %>
+<%= link_to 'Pins Home', root_path, class: 'nav' %>
+
+</div>
