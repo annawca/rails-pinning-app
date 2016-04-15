@@ -4,7 +4,7 @@ describe "GET index" do
 		
 	it 'renders the index template' do
 			get :index
-			expect(response).to render_template("index")
+			expect(response).to render_template(:index)
 	end
 
 	it 'populates @pins with all pins' do
@@ -61,8 +61,8 @@ describe "POST create" do
     end
     
     it 'redirects to the show view' do
-      post :create, pin: @pin_hash
-      expect(response).to redirect_to(pin_url(assigns(:pin)))
+      post :create, @pin_hash
+      expect(response).to redirect_to(:show_by_name)
     end
     
     it 'redisplays new form on error' do
@@ -109,11 +109,12 @@ describe "GET edit" do
 
 describe "POST update" do
 	before(:each) do
-		@pin = Pin.create(title: "Rails Wizard", 
+		@pin_update = Pin.create(title: "Rails Wizard", 
         url: "http://railswizard.org", 
         slug: "rails-wizard", 
         text: "A fun and helpful Rails Resource",
         category_id: 1)
+#    @invalid_pin_hash = { title: "", url: "", slug: "", text: "", category_id: 1}
 	end
     
     after(:each) do
@@ -143,10 +144,13 @@ describe "POST update" do
 
     context	"invalid attributes" do
     	it 'assigns an @errors instance variable' do
+        put :update, @pin_update
+        expect(assigns[@errors].present?).to be(true)
     	end
 
     	it 'renders the edit view' do
-
+        put :update, @pin_update
+        expect(response).to render_template(:edit)
     	end
     end
 

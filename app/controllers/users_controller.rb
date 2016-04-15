@@ -27,7 +27,8 @@ class UsersController < ApplicationController
 
   # POST /login
   def authenticate 
-    if User.authenticate(params[:email], params[:password]).nil?
+    @user = User.authenticate(params[:email], params[:password])
+    if @user.nil?
       @errors = "Your email and password combination does not exist. Please try again."
       render :login
     else
