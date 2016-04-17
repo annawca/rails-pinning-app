@@ -61,8 +61,8 @@ describe "POST create" do
     end
     
     it 'redirects to the show view' do
-      post :create, @pin_hash
-      expect(response).to redirect_to(:show_by_name)
+      post :create, pin: @pin_hash, slug: @pin_hash
+      expect(response).to redirect_to(:pin_by_name)
     end
     
     it 'redisplays new form on error' do
