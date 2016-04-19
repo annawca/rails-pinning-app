@@ -37,11 +37,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def current_user
-    @user ||= User.where("id=?",session[:user_id]).first
-  end
-  helper_method :current_user
-
   def logout
     session.delete(:user_id)
     redirect_to root_path
