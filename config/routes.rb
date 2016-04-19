@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
   resources :users, except: [:index]
 
   get "listusers" => "users#index"
@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'login' => "users#login"
 
   post 'login' => "users#authenticate"
+
+  delete 'logout/:id' => "users#logout", as: :logout
 
   resources :pins
 

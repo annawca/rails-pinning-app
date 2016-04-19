@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -32,9 +32,19 @@ class UsersController < ApplicationController
       @errors = "Your email and password combination does not exist. Please try again."
       render :login
     else
-      @user = User.find_by_email(params[:email])
-      render :show
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
     end
+  end
+
+  def current_user
+    @user ||= User.where("id=?",session[:user_id]).first
+  end
+  helper_method :current_user
+
+  def logout
+    session.delete(:user_id)
+    redirect_to root_path
   end
 
   # POST /users
@@ -72,12 +82,19 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to listusers_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+
+    def require_login
+      if current_user.nil?
+        redirect_to login_path
+      end
+    end 
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
