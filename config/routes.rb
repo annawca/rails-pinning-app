@@ -1,5 +1,7 @@
   Rails.application.routes.draw do
 
+  post "pins/repin/:id" => "pins#repin", as: 'repin'
+
   resources :users, except: [:index]
 
   get "listusers" => "users#index"

@@ -62,7 +62,10 @@ hr{
 logo-thumbnail {
   padding: 5px;
 }
-
+ul.list-inline {
+  color: #666;
+  list-style-type:none;
+}
 input[type=submit] {
   width:25%;
   height: 60px;
