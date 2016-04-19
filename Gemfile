@@ -58,6 +58,6 @@ group :test do
    gem 'spring'
    gem 'rspec'
    gem 'rspec-rails'
-   gem 'factory_girl'
+   gem 'factory_girl_rails'
 end
 

@@ -84,11 +84,6 @@ class UsersController < ApplicationController
 
   private
 
-    def require_login
-      if current_user.nil?
-        redirect_to login_path
-      end
-    end 
 
     # Use callbacks to share common setup or constraints between actions.
     def set_user
