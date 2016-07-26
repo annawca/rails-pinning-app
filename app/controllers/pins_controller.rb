@@ -25,6 +25,7 @@ class PinsController < ApplicationController
 
     if @pin.valid?
       @pin.user_id = current_user.id
+      @pin.board_id = current_user.pinnings.board_id
       @pin.save
       redirect_to pin_by_name_path(@pin.slug)
     else 

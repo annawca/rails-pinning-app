@@ -20,7 +20,7 @@
 
 <p>
   <strong>Password:</strong>
-  <%= @user.password %>
+  ***<%= @user.password %>
 </p>
 
 
@@ -32,40 +32,4 @@
 <div class="header">
   <h1>Your Pins</h1>
 </div>
-<div class="pins">
-  <% @pins.each_slice(3) do |row| %>
-    <div class="row">
-      <% row.each do |pin| %>      
-        <div class="pin-container col-md-4">
-          <div class="pin">
-            <div class="pin-header row">
-
-              <div class="logo-thumbnail col-xs-4">
-               <% if "#{pin.category.name}" == "rails" %>
-                  <%= image_tag('rails-logo-thumbnail.png') %>
-                <% elsif "#{pin.category.name}" == "ruby" %>    
-                  <%= image_tag('ruby-logo-thumbnail.png') %> 
-                <% end %>
-                <% if !pin.image.url.nil? %>
-                  <img src="<%= pin.image.url(:thumb) %>">
-                <% end %>
-              </div>
-
-              <div class="pin-title col-xs-8">
-               <h3>
-                <%= link_to "#{pin.title}", pin_by_name_path(slug: pin.slug) %>
-              </h3>
-               <%= link_to "#{pin.url.truncate(30)}", "#{pin.url}", html_options = {target: "_blank"} %>
-               </div>
-          </div>
-            <hr/>
-            <p class="text"><%= "#{pin.text}" %></p>
-            <%= link_to repin_path(pin), class: 'nav', method: "post" do %>
-              <i class="fa fa-plus-square" aria-hidden="true"></i> Repin
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+<%= render partial: "shared/pins_list" %>

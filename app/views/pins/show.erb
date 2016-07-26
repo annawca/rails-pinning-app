@@ -29,9 +29,8 @@
 
   <%= link_to 'Edit', edit_pin_by_name_path("#{@pin.slug}"), method: :get, class: 'nav' %> 
 
-  <%= link_to repin_path(@pin), class: 'nav', method: "post" do %>
-              <i class="fa fa-plus" aria-hidden="true"></i> Repin
-            <% end %>
+  <%= render partial: "shared/repin_form", locals: {pin: @pin} %>
+
 </div>
 
 <br/>

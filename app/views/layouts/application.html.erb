@@ -10,16 +10,39 @@
 <body>
   <div class="container">
   	<!--Displays Username-->
-    <% if !session[:user_id].nil? %>
-  	<div class="pull-right">
-  		<h3>  	
-          Hi, 		
-  				<%= link_to "#{current_user.first_name}", user_path(current_user, method: "get") %>
-          <%= link_to logout_path(current_user), method: :delete do %>
-          <i class="fa fa-power-off" aria-hidden="true"></i>
+    <% if logged_in? %>
+  	<div class="dropdown pull-right">
+        <button id="dropdownMenu1" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+          <%= "#{current_user.first_name}   " %>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+          <%  current_user.boards.each do |board| %>
+            <li role="presentation">
+              <a role="menuitem" tabindex="-1" href="<%= board_path(board.id) %>">
+                <%= "#{board.name}" %>
+              </a>
+            </li>
           <% end %>
-  		</h3>
-  	</div>
+          <li role="presentation" class="divider"></li>
+           <li role="presentation">
+              <%= link_to "Add a Pin", new_pin_path, "role" => "menuitem", "tabindex" => "-1" %>
+            </li>
+           <li role="presentation">
+              <%= link_to "Add a Board", new_board_path, "role" => "menuitem", "tabindex" => "-1" %>
+            </li>
+            <li role="presentation" class="divider"></li>
+           <li role="presentation">
+              <%= link_to "Home", root_path, "role" => "menuitem", "tabindex" => "-1" %>
+            </li>
+            <li role="presentation">
+              <%= link_to "All My Pins", user_path(current_user), "role" => "menuitem", "tabindex" => "-1" %>
+            </li>
+           <li role="presentation"></li>
+              <li role="presentation"><%= link_to "Logout", logout_path(current_user), :method => :delete, "role" => "menuitem", "tabindex" => "-1" %>
+            </li>
+        </ul>
+    </div>
     <% end %>
     <%= yield %>
   </div>

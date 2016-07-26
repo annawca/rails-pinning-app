@@ -3,10 +3,13 @@ class CreatePinnings < ActiveRecord::Migration
     create_table :pinnings do |t|
       t.references :user, index: true
       t.references :pin, index: true
-      t.timestamps
+      t.references :board, index: true
+      
+      true.timestamps
     end
     add_foreign_key :pinnings, :users
     add_foreign_key :pinnings, :pins
+    add_foreign_key :pinnings, :boards
 
     Pin.where("user_id IS NOT NULL").each do |pin|
     	puts "got pin #{pin.id}"
